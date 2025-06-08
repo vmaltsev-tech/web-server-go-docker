@@ -165,4 +165,4 @@ docker-compose exec grafana grafana-cli admin reset-admin-password newpassword
 
 ---
 
-**Последнее обновление**: 2025-06-06 
+**Последнее обновление**: 2025-06-06
