@@ -242,7 +242,7 @@ make security-scan
 go mod download
 
 # Запуск приложения
-go run main.go config.go
+go run ./cmd/server
 
 # Или использование Make
 make build
