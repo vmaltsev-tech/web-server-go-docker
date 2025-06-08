@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"sync"
 	"time"
 
 	"web-server-go-docker/internal/metrics"
@@ -86,6 +87,7 @@ func (sm *SecurityMiddleware) Handler(next http.Handler) http.Handler {
 // RequestCounterMiddleware подсчитывает количество запросов
 type RequestCounterMiddleware struct {
 	counter *int
+	mu      sync.Mutex
 }
 
 // NewRequestCounterMiddleware создает новый RequestCounterMiddleware
@@ -99,7 +101,9 @@ func NewRequestCounterMiddleware(counter *int) *RequestCounterMiddleware {
 func (rcm *RequestCounterMiddleware) Handler(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if rcm.counter != nil {
+			rcm.mu.Lock()
 			(*rcm.counter)++
+			rcm.mu.Unlock()
 		}
 		next.ServeHTTP(w, r)
 	})
