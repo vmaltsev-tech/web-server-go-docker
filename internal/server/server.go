@@ -1,3 +1,4 @@
+
 package server
 
 import (
@@ -127,4 +128,4 @@ func (s *Server) Shutdown() error {
 // GetRequestCount возвращает количество обработанных запросов
 func (s *Server) GetRequestCount() int {
 	return s.requestCount
-} 
+}

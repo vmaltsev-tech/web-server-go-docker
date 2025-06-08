@@ -1,0 +1,34 @@
+# Binaries
+main
+*.exe
+
+# Build artifacts
+*.out
+*.test
+
+# Coverage
+coverage.out
+coverage.html
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Env files
+.env
+.env.*
+
+# Dependency directories
+vendor/
+
+# Test data
+*.tmp

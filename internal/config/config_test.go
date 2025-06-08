@@ -1,3 +1,4 @@
+
 package config
 
 import (
@@ -235,4 +236,4 @@ func TestGetBoolEnv(t *testing.T) {
 			}
 		})
 	}
-} 
+}

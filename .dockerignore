@@ -1,3 +1,4 @@
+
 # Git
 .git
 .gitignore
@@ -44,4 +45,4 @@ monitoring/
 
 # Build artifacts
 main
-*.exe 
+*.exe

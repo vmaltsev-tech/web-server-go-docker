@@ -1,3 +1,4 @@
+
 package metrics
 
 import (
@@ -82,4 +83,4 @@ func (m *Metrics) GetStartTime() time.Time {
 // Handler возвращает HTTP handler для Prometheus метрик
 func (m *Metrics) Handler() http.Handler {
 	return promhttp.HandlerFor(m.registry, promhttp.HandlerOpts{})
-} 
+}

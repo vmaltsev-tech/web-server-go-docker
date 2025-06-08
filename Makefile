@@ -1,3 +1,4 @@
+
 .PHONY: help build test clean up down logs fmt vet security-scan coverage benchmark
 
 # Default target
@@ -165,4 +166,4 @@ prod-build: ## Build production Docker image
 
 prod-deploy: prod-build ## Deploy to production (placeholder)
 	@echo "Production deployment would go here..."
-	@echo "Consider using Kubernetes, AWS ECS, or similar orchestration" 
+	@echo "Consider using Kubernetes, AWS ECS, or similar orchestration"

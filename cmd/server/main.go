@@ -1,3 +1,4 @@
+
 package main
 
 import (
@@ -24,4 +25,4 @@ func main() {
 	if err := srv.Start(); err != nil {
 		log.Fatalf("Server error: %v", err)
 	}
-} 
+}
