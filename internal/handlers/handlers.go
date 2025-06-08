@@ -1,3 +1,4 @@
+
 package handlers
 
 import (
@@ -128,4 +129,4 @@ func (h *Handler) PrometheusMetrics(w http.ResponseWriter, r *http.Request) {
 
 	// Используем стандартный Prometheus handler
 	h.metrics.Handler().ServeHTTP(w, r)
-} 
+}

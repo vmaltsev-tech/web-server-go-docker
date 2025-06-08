@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 # Setup script for Go Web Server Monitoring
@@ -132,4 +133,4 @@ main() {
 }
 
 # Execute main function
-main "$@" 
+main "$@"

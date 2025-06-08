@@ -1,3 +1,4 @@
+
 package handlers
 
 import (
@@ -258,4 +259,4 @@ func TestHandler_MethodNotAllowed(t *testing.T) {
 			})
 		}
 	}
-} 
+}

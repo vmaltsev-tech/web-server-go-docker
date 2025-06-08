@@ -1,3 +1,4 @@
+
 package config
 
 import (
@@ -149,4 +150,4 @@ func getBoolEnv(key string, defaultValue bool) bool {
 		}
 	}
 	return defaultValue
-} 
+}
