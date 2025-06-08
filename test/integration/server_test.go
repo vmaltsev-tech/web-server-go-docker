@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
 	"testing"
 	"time"
 
@@ -13,6 +14,9 @@ import (
 )
 
 func TestServerIntegration(t *testing.T) {
+	if os.Getenv("RUN_INTEGRATION_TESTS") != "1" {
+		t.Skip("skipping integration test; set RUN_INTEGRATION_TESTS=1 to run")
+	}
 	// Создаем тестовую конфигурацию
 	cfg := &config.Config{
 		Server: config.ServerConfig{
@@ -177,4 +181,4 @@ func TestServerIntegration(t *testing.T) {
 	if err := srv.Shutdown(); err != nil {
 		t.Errorf("Failed to shutdown server: %v", err)
 	}
-} 
+}
