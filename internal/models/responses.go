@@ -19,4 +19,4 @@ type MetricsResponse struct {
 	RequestCount int    `json:"request_count"`
 	Uptime       string `json:"uptime"`
 	StartTime    string `json:"start_time"`
-} 
+}
