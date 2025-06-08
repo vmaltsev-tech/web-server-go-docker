@@ -99,7 +99,7 @@ func NewRequestCounterMiddleware(counter *int) *RequestCounterMiddleware {
 func (rcm *RequestCounterMiddleware) Handler(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if rcm.counter != nil {
-			*rcm.counter++
+			(*rcm.counter)++
 		}
 		next.ServeHTTP(w, r)
 	})
@@ -113,4 +113,4 @@ func Chain(middlewares ...Middleware) func(http.Handler) http.Handler {
 		}
 		return final
 	}
-} 
+}
