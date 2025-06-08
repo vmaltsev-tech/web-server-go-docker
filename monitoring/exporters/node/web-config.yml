@@ -1,0 +1,12 @@
+tls_server_config: {}
+
+http_server_config:
+  http2: false
+  headers:
+    "X-Content-Type-Options": "nosniff"
+    "X-Frame-Options": "deny"
+    "X-XSS-Protection": "1; mode=block"
+
+basic_auth_users: {}
+
+users: {} 

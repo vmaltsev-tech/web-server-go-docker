@@ -1,0 +1,69 @@
+groups:
+  - name: web-server-alerts
+    rules:
+      - alert: WebServerDown
+        expr: up{job="web-server"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Web server is down"
+          description: "Web server {{ $labels.instance }} has been down for more than 1 minute."
+
+      - alert: HighRequestLatency
+        expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket{job="web-server"}[5m])) > 0.5
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High request latency"
+          description: "95th percentile latency is {{ $value }}s for {{ $labels.instance }}."
+
+      - alert: HighErrorRate
+        expr: |
+          (
+            rate(http_requests_total{job="web-server", status=~"5.."}[5m]) /
+            rate(http_requests_total{job="web-server"}[5m])
+          ) > 0.1
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High error rate"
+          description: "Error rate is {{ $value | humanizePercentage }} for {{ $labels.instance }}."
+
+      - alert: HighMemoryUsage
+        expr: go_memstats_heap_alloc_bytes{job="web-server"} > 100 * 1024 * 1024
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High memory usage"
+          description: "Memory usage is {{ $value | humanize }}B for {{ $labels.instance }}."
+
+      - alert: TooManyGoroutines
+        expr: go_goroutines{job="web-server"} > 1000
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Too many goroutines"
+          description: "Number of goroutines is {{ $value }} for {{ $labels.instance }}."
+
+      - alert: HighResponseTime
+        expr: histogram_quantile(0.99, rate(http_request_duration_seconds_bucket{job="web-server"}[5m])) > 1
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High response time"
+          description: "99th percentile response time is {{ $value | humanizeDuration }} for {{ $labels.instance }}."
+
+      - alert: PrometheusTargetDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Target {{ $labels.instance }} is down"
+          description: "{{ $labels.job }}/{{ $labels.instance }} has been down for more than 1 minute." 
