@@ -18,15 +18,15 @@ node-exporter | time=2025-06-08T06:08:50.452Z level=ERROR source=http.go:219 msg
 
 **Решения:**
 
-#### 1. Увеличение таймаутов (уже применено)
+#### 1. Увеличение таймаутов
 ```yaml
 # prometheus.yml
 - job_name: 'node-exporter'
-  scrape_interval: 30s
-  scrape_timeout: 25s
+  scrape_interval: 60s
+  scrape_timeout: 55s
 ```
 
-#### 2. Ограничение коллекторов (уже применено)
+#### 2. Ограничение коллекторов
 ```yaml
 # docker-compose.yml
 command:
@@ -35,10 +35,11 @@ command:
   - '--collector.filesystem'
   - '--collector.loadavg'
   - '--collector.meminfo'
-  - '--collector.netdev'
   - '--collector.time'
   - '--collector.uname'
 ```
+Отключение `netdev` позволяет сократить объем сетевых метрик и снизить
+нагрузку на обработку, что также помогает избегать прерываний соединения.
 
 #### 3. Настройка логирования (уже применено)
 ```yaml
@@ -70,7 +71,7 @@ time curl -s http://localhost:9100/metrics > /dev/null
 
 1. **Увеличение ресурсов** контейнера node-exporter
 2. **Дальнейшее ограничение коллекторов**
-3. **Увеличение scrape_interval** до 60s
+3. **Увеличение scrape_interval** до 60s и `scrape_timeout` до 55s
 
 ## Другие проблемы
 
