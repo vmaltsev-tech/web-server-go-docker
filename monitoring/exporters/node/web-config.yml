@@ -7,6 +7,4 @@ http_server_config:
     "X-Frame-Options": "deny"
     "X-XSS-Protection": "1; mode=block"
 
-basic_auth_users: {}
-
-users: {} 
+basic_auth_users: {} 
